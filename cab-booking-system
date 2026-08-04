@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cab Booking System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+}
+
+header{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.container{
+    width:90%;
+    max-width:500px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#1f2937;
+}
+
+label{
+    font-weight:bold;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin:10px 0 20px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    margin-top:20px;
+    padding:15px;
+    background:#e0f2fe;
+    border-radius:10px;
+    display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+    <h1>🚕 Cab Booking System</h1>
+    <p>Book your ride quickly and easily</p>
+</header>
+
+
+<div class="container">
+
+<h2>Book a Cab</h2>
+
+
+<label>Passenger Name</label>
+<input type="text" id="name" placeholder="Enter your name">
+
+
+<label>Pickup Location</label>
+<input type="text" id="pickup" placeholder="Enter pickup location">
+
+
+<label>Drop Location</label>
+<input type="text" id="drop" placeholder="Enter drop location">
+
+
+<label>Cab Type</label>
+
+<select id="cab">
+    <option value="10">Mini Cab - ₹10/km</option>
+    <option value="15">Sedan - ₹15/km</option>
+    <option value="20">SUV - ₹20/km</option>
+</select>
+
+
+<label>Distance (KM)</label>
+<input type="number" id="distance" placeholder="Enter distance">
+
+
+<button onclick="bookCab()">
+    Book Cab
+</button>
+
+
+<div class="result" id="result"></div>
+
+
+</div>
+
+
+<script>
+
+function bookCab(){
+
+    let name=document.getElementById("name").value;
+    let pickup=document.getElementById("pickup").value;
+    let drop=document.getElementById("drop").value;
+    let cab=document.getElementById("cab");
+    let price=cab.value;
+    let cabName=cab.options[cab.selectedIndex].text;
+    let distance=document.getElementById("distance").value;
+
+
+    if(name=="" || pickup=="" || drop=="" || distance==""){
+        alert("Please fill all details");
+        return;
+    }
+
+
+    let fare=price*distance;
+
+
+    let result=document.getElementById("result");
+
+    result.style.display="block";
+
+    result.innerHTML=`
+
+    <h3>Booking Confirmed ✅</h3>
+    <p><b>Name:</b> ${name}</p>
+    <p><b>Pickup:</b> ${pickup}</p>
+    <p><b>Drop:</b> ${drop}</p>
+    <p><b>Cab:</b> ${cabName}</p>
+    <p><b>Distance:</b> ${distance} KM</p>
+    <p><b>Total Fare:</b> ₹${fare}</p>
+
+    `;
+
+}
+
+</script>
+
+
+</body>
+</html>
